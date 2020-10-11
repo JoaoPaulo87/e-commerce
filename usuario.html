@@ -40,50 +40,61 @@
         <nav class="navbar flex-row navbar-expand-md">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <button class="nav-link btn active">Registrar</button>
+              <button type="button" id="boton-formulario-registro" class="nav-link btn active">Registrar</button>
             </li>
             <li class="nav-item">
-              <button class="nav-link btn">Iniciar sesión</button>
+              <button type="button" id="boton-formulario-inicio" class="nav-link btn">Iniciar sesión</button>
             </li>
 
           </ul>
         </nav>
-        <div class="form__controles controles--registro">
-          <div class="form-group">
+
+        <div id="formulario-registro" class="form__controles controles--registro">
+          <div class="form-group" data-paso="1">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre">
           </div>
-          <div class="form-group">
-            <label for="email">Dirección de correo</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">Tu email no va a ser compartido con nadie.</small>
+          <div class="form-group" data-paso="1">
+            <label for="email-registro">Dirección de correo</label>
+            <input type="email" class="form-control" id="email-registro" aria-describedby="ayudaCorreo">
+            <small id="ayudaCorreo" class="form-text text-muted">Tu email no va a ser compartido con nadie.</small>
           </div>
-          <div class="form-group form-check">
+          <div class="form-group form-check" data-paso="1">
             <input type="checkbox" class="form-check-input" id="terminos-condiciones">
             <label class="form-check-label" for="terminos-condiciones">Acepto los <a href="#">términos y condiciones.</a></label>
           </div>
+
+          <div class="form-group oculto" data-paso="2">
+            <label for="clave-registro">Contraseña</label>
+            <input class="form-control" type="password" id="clave-registro">
+          </div>
+          <div class="form-group oculto" data-paso="2">
+            <label for="clave-registro-repetir">Repetí tu contraseña</label>
+            <input class="form-control" type="password" id="clave-registro-repetir">
+          </div>
+
           <div class="form-row">
             <div class="col text-center">
-              <button type="submit" class="oculto btn btn-primary">Registrar</button>
+              <button id="boton-registro" type="submit" class="oculto btn btn-primary">Registrar</button>
             </div>
             <div class="col text-center">
-              <button type="button" class="btn btn-primary">Siguiente</button>
+              <button id="boton-siguiente" type="button" class="btn btn-primary">Siguiente</button>
             </div>
             <div class="col text-center">
-              <button type="reset" class="oculto btn btn-outline-light">Limpiar</button>
+              <button id="boton-volver" type="button" class="oculto btn btn-outline-light">Volver</button>
             </div>
           </div>
         </div>
 
-        <div class="form__controles controles--inicio oculto">
+        <div id="formulario-inicio" class="form__controles controles--inicio oculto">
 
           <div class="form-group">
-            <label for="email">Dirección de correo</label>
-            <input type="email" class="form-control" id="email">
+            <label for="email-inicio">Dirección de correo</label>
+            <input type="email" class="form-control" id="email-inicio">
           </div>
           <div class="form-group">
-            <label for="clave">Contraseña</label>
-            <input type="password" class="form-control" id="clave">
+            <label for="clave-inicio">Contraseña</label>
+            <input type="password" class="form-control" id="clave-inicio">
           </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="recordar-datos">

@@ -9,6 +9,9 @@ body{
   background-size: cover;
   background-attachment:fixed;
 }
+main{
+  margin-bottom: 1em;
+}
 button > *{
   font-size: 1em;
 }
