@@ -1,0 +1,28 @@
+.form{
+  background-color: var(--color-base);
+  color: var(--color-contraste);
+  width: max-content;
+}
+.form__controles{
+  padding: 1em 2em;
+}
+.form .navbar{
+  padding: 0;
+}
+.form label{
+  position: relative;
+  top: 2.4em;
+  left: 0.8em;
+  color: var(--color-base);
+  transition: top 0.3s, left 0.3s, color 0.3s;
+}
+.form label.en-foco{
+  position: relative;
+  top: 0;
+  left: 0;
+  color: inherit;
+}
+.form .form-check label{
+  position: static;
+  color: inherit;
+}
