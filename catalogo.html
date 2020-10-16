@@ -22,10 +22,26 @@
       <!-- incluir barra de navegación -->
 
     </div>
+    <!-- Contenido Principal -->
     <main class="container-fluid d-flex" id="">
       <div class="row mt-3">
-        <div class="col-md-3 mb-4 border-right shadow p-5 bg-white">
-            <div>
+        <!-- categorias responsive -->
+        <div class="sidebar_xs m-3">
+          <div class="dropdown">
+            <button class=" btn_xs btn btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorias
+            </button>
+            <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
+              <p><a href="" class="dropdown-item">Cosmética Natural</a></p>
+              <p><a href="" class="dropdown-item">Eco-Market</a></p>
+              <p><a href="" class="dropdown-item">Higiene Personal</a></p>
+              <p><a href="" class="dropdown-item">Aromaterapia</a></p>
+              <p><a href="" class="dropdown-item">Eco-Accesorios</a></p>
+            </div>
+          </div>
+        </div>
+        <!-- categorias -->
+        <div class="sidebar_lg col-md-3 mb-4 border-right shadow p-5 bg-white">
               <h4 class="text-center">Categorias</h4>
               <hr class="mr-4 divider">
               <div class="mt-5">
@@ -40,8 +56,7 @@
                 <p><a href="">Eco-Accesorios</a></p>
                 <hr>
               </div>              
-            </div>
-          <section class="mt-5">
+          <!-- <section class="mt-5">
             <div>
               <h4 class="text-center">Filtrar por precio</h4>
               <hr class="divider">
@@ -49,13 +64,13 @@
                 <input type="range" name="" id="" class="styled" min="200" max="5000">
               </label>
             </div>
-          </section>
+          </section> -->
         </div>
+        <!-- paginacion/select -->
         <div class="col-md-9  mb-4">
-          <div class="m-3">
-            <div class="row d-flex justify-content-between aling-items-center">
-              <div class="col-md-5">
-                <div class="d-flex flex-wrap">
+            <div class="row d-flex justify-content-between  aling-items-center m-3">
+              <div class="col-4 col-md-5">
+                <div class="d-flex ">
                    <div class="orderBy">
                     <select class="style" name="" id="">
                       <option value="best-selling" selected>Destacados</option>
@@ -65,7 +80,7 @@
                    </div>
                 </div>
               </div>
-              <div class="col-md-3 text-center">
+              <div class="col-5 col-md-3 ">
                 <nav aria-label="Page navigation example">
                   <ul class="pagination pagination-circle justify-content-center float-md-right mb-0">
                     <li class="page-item">
@@ -85,7 +100,7 @@
                 </nav>
               </div>
             </div>
-          </div>         
+            <!-- productos -->
             <div class="row justify-content-around">
               <div class="col-md-4">
                   <div class="card-product">
