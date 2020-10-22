@@ -2,12 +2,8 @@
   font-size: calc(0.8rem + 0.4vmax);
 }
 body{
-  background-image: url("../res/img/bg.jpg");
-  background-color: rgba(0, 0, 0, 0.5);
-  background-blend-mode: multiply;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment:fixed;
+  background-color: var(--color-base);
+  --radio-bordes:0.5em;
 }
 main{
   margin-bottom: 1em;
@@ -15,12 +11,16 @@ main{
 button > *{
   font-size: 1em;
 }
-.texto-destacado{
-  color: var(--color-enfasis);
-}
-.texto-destacado:hover{
-  color: var(--color-enfasis-light);
-}
 .oculto{
   display: none;
+}
+.nav-link{
+  color: var(--color-base);
+  padding: 0.5em 2em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-link:hover{
+  color: var(--color-enfasis);
+  border: none;
 }

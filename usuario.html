@@ -18,20 +18,23 @@
   </script>
 </head>
 <body>
+
+  <div class="hero-image">
+  </div>
   <header class="sticky-top">
     <nav class="navbar flex-column navbar-expand-md justify-content-center">
       <a class="navbar-brand mx-5" href="index.html">
-        <img src="./res/img/logo 2.png" alt="" loading="lazy"alt="logo de limón y sal">
+        <img src="./res/img/logo 1.png" alt="" loading="lazy"alt="logo de limón y sal">
       </a>
       <div class="carrito" id="carrito">
-        <button type="button" name="button" class="btn btn-outline-light btn-round carrito__toggle"><i class="fi-xwsuhl-shopping-cart-solid"></i><p class="carrito__contador">0</p></button>
+        <button type="button" name="button" class="btn"><i class="fi-xwsuhl-shopping-cart-solid"></i><p>0</p></button>
       </div>
       <div class="collapse navbar-collapse text-center" id="mainNavbar">
         <a class="nav-link" href="#">Inicio</a>
         <a class="nav-link" href="#">Catálogo</a>
-        <a class="texto-destacado nav-link" href="usuario.html" >Tu cuenta</a>
+        <a class="nav-link" href="usuario.html" >Tu cuenta</a>
       </div>
-      <button class="mt-3 navbar-toggler btn btn-outline-light" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span>&#9776;</span></button>
+      <button class="mt-3 navbar-toggler btn" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span>&#9776;</span></button>
     </nav>
   </header>
   <main class="container-fluid">
@@ -40,48 +43,43 @@
         <nav class="navbar flex-row navbar-expand-md">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <button type="button" id="boton-formulario-registro" class="nav-link btn active">Registrar</button>
+                <button type="button" id="boton-formulario-registro" class="nav-link btn active">Registrar</button>
             </li>
             <li class="nav-item">
               <button type="button" id="boton-formulario-inicio" class="nav-link btn">Iniciar sesión</button>
             </li>
-
           </ul>
         </nav>
-
         <div id="formulario-registro" class="form__controles controles--registro">
           <div class="form-group" data-paso="1">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre">
-          </div>
-          <div class="form-group" data-paso="1">
             <label for="email-registro">Dirección de correo</label>
             <input type="email" class="form-control" id="email-registro" aria-describedby="ayudaCorreo">
             <small id="ayudaCorreo" class="form-text text-muted">Tu email no va a ser compartido con nadie.</small>
-          </div>
-          <div class="form-group form-check" data-paso="1">
-            <input type="checkbox" class="form-check-input" id="terminos-condiciones">
-            <label class="form-check-label" for="terminos-condiciones">Acepto los <a href="#">términos y condiciones.</a></label>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="terminos-condiciones">
+              <label class="form-check-label" for="terminos-condiciones">Acepto los <a href="#">términos y condiciones.</a></label>
+            </div>
           </div>
 
           <div class="form-group oculto" data-paso="2">
             <label for="clave-registro">Contraseña</label>
             <input class="form-control" type="password" id="clave-registro">
-          </div>
-          <div class="form-group oculto" data-paso="2">
             <label for="clave-registro-repetir">Repetí tu contraseña</label>
             <input class="form-control" type="password" id="clave-registro-repetir">
           </div>
 
+
           <div class="form-row">
             <div class="col text-center">
-              <button id="boton-registro" type="submit" class="oculto btn btn-primary">Registrar</button>
+              <button id="enviar-formulario" type="submit" class="oculto btn btn-primary">Registrar</button>
             </div>
             <div class="col text-center">
-              <button id="boton-siguiente" type="button" class="btn btn-primary">Siguiente</button>
+              <button id="siguiente-paso" type="button" class="btn btn-primary">Siguiente</button>
             </div>
             <div class="col text-center">
-              <button id="boton-volver" type="button" class="oculto btn btn-outline-light">Volver</button>
+              <button id="volver-paso" type="button" class="oculto btn btn-secondary">Volver</button>
             </div>
           </div>
         </div>
@@ -102,13 +100,16 @@
           </div>
           <div class="form-row">
             <div class="col text-center">
-              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+              <button id="enviar-formulario" type="submit" class="btn btn-primary">Iniciar sesión</button>
             </div>
           </div>
         </div>
       </form>
     </div>
   </main>
+  <div class="formulario__errores">
+
+  </div>
 </body>
 <script src="js/form.js">
 

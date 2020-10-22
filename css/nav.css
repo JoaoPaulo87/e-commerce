@@ -1,45 +1,50 @@
+.hero-image{
+  background-image: url('../res/img/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 40vh;
+  width: 100%;
+  position: absolute;
+}
 header{
-  margin-bottom: 2.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+  margin-bottom: 5em;
 }
 .navbar{
-  background-color: var(--color-base-transparente-light);
-  border-bottom: 0.25em solid var(--color-base-transparente);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--color-base);
+}
+.navbar .navbar-toggler{
+  color: inherit;
+}
+
+.navbar-brand{
+  margin: 0.75em 0;
 }
 .navbar-brand img{
   width: 7em;
 }
-.nav-link{
-  color: var(--color-contraste);
-  padding: 0.5em 2em;
-  text-transform: uppercase;
-  transition: color 0.3s;
-}
-.nav-link:hover{
-  color: var(--color-enfasis);
-}
-.btn-round{
-  border-radius: 50%;
-  width: 4em;
-  height: 4em;
-  text-align: center;
-}
 #carrito{
-  position: fixed;
-  margin: 2em 2em;
-  bottom: 0;
-  right: 0;
-}
-@media (min-width: 768px){
-  #carrito{
-    top: 0;
-  }
-}
-.carrito__toggle{
-  position: relative;
-}
-.carrito__contador{
   position: absolute;
-  bottom: 0.4em;
-  right: 0.6em;
-  margin-bottom: 0;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin-right: 2%;
+  padding: 0.5em;
+  color: var(--color-base);
+}
+#carrito button:hover{
+  color: var(--color-base-light);
+}
+#carrito button{
+  display: flex;
+  flex-flow: row nowrap;
+  color: inherit;
+}
+#carrito p{
+  display: inline-block;
+  margin: 0;
+  margin-top: 0.1em;
+  margin-left: 0.5em;
 }

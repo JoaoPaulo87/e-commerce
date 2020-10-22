@@ -1,8 +1,7 @@
 body{
-  --color-contraste: rgba(255, 255, 255, 1);
-  --color-base: rgba(36, 42, 54, 1);
-  --color-base-transparente:rgba(36, 42, 54, 0.8);
-  --color-base-transparente-light: rgba(36, 42, 53, 0.6);
-  --color-enfasis: rgba(252, 233, 114, 1);
-  --color-enfasis-light: rgba(252, 244, 192, 1);
+  --color-contraste: rgb(33, 33, 33);
+  --color-contraste-light: rgb(100, 100, 100);
+  --color-base: rgb(255, 255, 255);
+  --color-base-light: rgb(200, 200, 200);
+  --color-enfasis: rgb(255, 234, 0);
 }
