@@ -1,0 +1,55 @@
+body{
+    background-color: rgb(245, 239, 239);
+    background-attachment: fixed;
+}
+
+.title-banner{
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    text-align: center;
+    align-items: center;
+}
+
+.row{
+    margin-right: 0%;
+    margin-left: 0%;
+}
+
+.container-fluid.bg-light{
+    padding-right: 0%;
+    margin-right: 0%; 
+    padding-left: 0%; 
+    margin-left: 0%;
+}
+
+.row.p-4.p-md-5.text-white.align-items-center{
+    height: 40em;
+    width: 100%;
+    background-image: url(imagenes-ecommerce/img/fondo_catalogo_invertido.jpg);
+    background-repeat: no-repeat;
+    background-size:100%;
+    opacity: 0.9;
+}
+
+.row.pt-3{
+    justify-content: end;
+}
+
+.col-md-3.pt-4.my-3{
+    text-align: center; 
+    color:black; 
+    background-color: rgb(255, 255, 255, 0.6); 
+    border-radius: 0.5em;
+    box-shadow: 4px 8px 20px 1px rgba(0, 0, 0, 0.2);
+}
+
+.rounded-circle{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.rounded-circle img{
+    width: 100%;
+    height: auto;
+}
