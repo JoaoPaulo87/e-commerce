@@ -76,13 +76,13 @@ function enviarFormulario(e){
 }
 
 function inputsValidos(inputs = obtenerInputs(pasosFormulario[1])){
-  let withError = [];
+  let conError = [];
 
   for(input of inputs){
     if(input.type){
       if(input.type == 'text' && input.value) continue;
       if(input.type == 'email'){
-        let regExp = /[a-zA-z]+@{1}[a-zA-z]+.[a-zA-z]+/ig;
+        let regExp = /[a-zA-z0-9]+@{1}[a-zA-z0-9]+.[a-zA-z0-9]+/ig;
         if(regExp.test(input.value)) continue;
       }
       if(input.type == 'password' && input.id == 'clave-inicio' && input.value) continue;
@@ -94,22 +94,25 @@ function inputsValidos(inputs = obtenerInputs(pasosFormulario[1])){
       if(input.type == 'checkbox') {
         if(input.checked || !('required' in input.attributes)) continue;
       }
+      if(input.localName == 'textarea' && input.value) continue;
     }
     if(input.localName == 'select' && input.selectedIndex > 0) continue;
-    withError.push(input);
+    conError.push(input);
   }
-  if(withError.length){
+  if(conError.length){
     let tiempo = 3;
-    for(input of withError){
-      agregarErrorInput(input, tiempo*1000);
+    let altura = (conError.length-1) * 4;
+    for(input of conError){
+      agregarErrorInput(input, tiempo*1000, altura);
       tiempo+=2;
+      altura-=4;
     }
     return false;
   }
   else return true;
 }
 
-function agregarErrorInput(input, tiempo){
+function agregarErrorInput(input, tiempo, altura){
   let alerta = document.createElement('p');
   alerta.classList.add('formulario__mensaje', 'mensaje-error');
   if(input.type != "checkbox"){
@@ -118,10 +121,14 @@ function agregarErrorInput(input, tiempo){
   } else {
     alerta.innerText = 'Tenés que aceptar los términos y condiciones';
   }
-  document.querySelector('.formulario__errores').appendChild(alerta);
+  alerta.style.bottom = altura + 'em';
+  document.body.appendChild(alerta);
+  alerta.addEventListener('click', eliminarErrorInput);
   setTimeout(() => alerta.remove(), tiempo);
 }
-
+function eliminarErrorInput(e){
+  e.target.remove();
+}
 function compararClaves(){
   let mensaje, sonIguales = true;
 
@@ -150,10 +157,10 @@ function obtenerPasos(){
 }
 
 function obtenerInputs(paso){
-  let inputs = formularioActual.querySelectorAll(`.form-group[data-paso="${paso}"] input, .form-group[data-paso="${paso}"] select`);
+  let inputs = formularioActual.querySelectorAll(`.form-group[data-paso="${paso}"] input, .form-group[data-paso="${paso}"] select, .form-group[data-paso="${paso}"] textarea`);
 
   if(!inputs.length){
-    inputs = formularioActual.querySelectorAll(`.form-group input, .form-group select`);
+    inputs = formularioActual.querySelectorAll(`.form-group input, .form-group select, .form-group textarea`);
   }
   for (input of inputs){
     if(input.type != "checkbox" && input.type != "select"){
