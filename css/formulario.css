@@ -28,6 +28,9 @@
   color: var(--color-contraste);
   transition: top 0.3s, left 0.3s, color 0.3s;
 }
+.form textarea{
+  display: block;
+}
 .form label.en-foco{
   position: relative;
   top: 0.6em;
@@ -53,21 +56,17 @@
 .form .btn:not(.active){
   font-size: 0.9em;
 }
-.formulario__errores{
-  display: flex;
-  flex-flow: column;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  opacity: 1;
-}
 .formulario__mensaje{
+  position: fixed;
+  opacity: 1;
+  right: 0;
   border-radius: var(--radio-bordes);
   font-weight: bold;
   padding: 0.75em;
   margin: 0 0.5em 0.5em 0;
   border-width: 0.15em;
   border-style: solid;
+  cursor: pointer;
 }
 .formulario__mensaje.mensaje-error{
   color: rgba(255, 0, 0, 1);
