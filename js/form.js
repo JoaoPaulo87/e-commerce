@@ -1,23 +1,24 @@
-let formulario = {}, boton = {}, pasosFormulario = [1, 1], clave = [];
+let formulario = {}, boton = {}, pasosFormulario = [1, 1], clave = [], formularioActual;
 
 iniciarAplicacion();
 
 function iniciarAplicacion(){
-  obtenerInputs(pasosFormulario[1]);
-  obtenerPasos();
   obtenerControles();
   agregarListeners();
+  obtenerPasos();
+  obtenerInputs(pasosFormulario[1]);
   document.forms[0].reset();
 }
 
 function obtenerControles(){
   formulario['formulario registro'] = document.getElementById('formulario-registro');
   formulario['formulario inicio'] = document.getElementById('formulario-inicio');
+  formularioActual = formulario['formulario registro'];
   boton['siguiente paso'] = document.getElementById('siguiente-paso');
   boton['volver paso'] = document.getElementById('volver-paso');
   boton['formulario registro'] = document.getElementById('boton-formulario-registro');
   boton['formulario inicio'] = document.getElementById('boton-formulario-inicio');
-  boton['enviar formulario'] = document.querySelector('button[type=submit]');
+  boton['enviar formulario'] = document.querySelectorAll('button[type=submit]');
   clave.push(document.getElementById('clave-registro'));
   clave.push(document.getElementById('clave-registro-repetir'));
 }
@@ -27,9 +28,9 @@ function agregarListeners(){
   boton['volver paso'].addEventListener('click', navegarFormulario);
   boton['formulario registro'].addEventListener('click', alternarFormulario);
   boton['formulario inicio'].addEventListener('click', alternarFormulario);
-
-  boton['enviar formulario'].addEventListener('click', enviarFormulario);
-  document.forms[0].addEventListener('submit', enviarFormulario);
+  for(btn of boton['enviar formulario']){
+    boton.addEventListener('click', enviarFormulario);
+  }
 }
 function reiniciarFormulario(e){
   e.preventDefault();
@@ -39,10 +40,17 @@ function reiniciarFormulario(e){
 }
 function enviarFormulario(e){
   e.preventDefault();
-  for(let i = pasosFormulario[0]; i<= pasosFormulario[2]; i++){
-    if(!inputsValidos(obtenerInputs(i))){
-      navegarFormulario(null, i);
+  if(pasosFormulario[2]){
+    //Si el formulario tiene un solo paso, pasosFormulario[2] es cero.
+    if(!inputsValidos(obtenerInputs())){
       return false;
+    }
+  } else {
+    for(let i = pasosFormulario[0]; i<= pasosFormulario[2]; i++){
+      if(!inputsValidos(obtenerInputs(i))){
+        navegarFormulario(null, i);
+        return false;
+      }
     }
   }
   document.forms[0].submit();
@@ -59,6 +67,7 @@ function inputsValidos(inputs = obtenerInputs(pasosFormulario[1])){
         let regExp = /[a-zA-z]+@{1}[a-zA-z]+.[a-zA-z]+/ig;
         if(regExp.test(input.value)) continue;
       }
+      if(input.type == 'password' && input.id == 'clave-inicio' && input.value) continue;
       if(input.type == 'password' && compararClaves() && clave[0].value && clave[1].value) continue;
       if(input.type == 'number'){
         let regExp = /[0-9]+/gi;
@@ -117,11 +126,14 @@ function reiniciarLabels(){
 }
 
 function obtenerPasos(){
-  pasosFormulario.push(document.querySelectorAll('[data-paso]').length);
+  pasosFormulario[2] = formularioActual.querySelectorAll('[data-paso]').length;
 }
 
-function obtenerInputs(paso){
-  let inputs = document.querySelectorAll(`.form-group[data-paso="${paso}"] input, .form-group[data-paso="${paso}"] select`);
+function obtenerInputs(paso = null){
+  let inputs = formularioActual.querySelectorAll(`.form-group[data-paso="${paso}"] input, .form-group[data-paso="${paso}"] select`);
+  if(!inputs.length){
+    inputs = formularioActual.querySelectorAll('.form-group input, .form-group select');
+  }
   for (input of inputs){
     if(input.type != "checkbox" && input.type != "select"){
       input.addEventListener('focus',alternarLabel);
@@ -155,8 +167,6 @@ function alternarInputs(anterior, actual){
 
   if(actual > pasosFormulario[0]){
     boton['volver paso'].classList.remove('oculto');
-    console.log(boton['volver paso']);
-    console.log(boton['volver paso'].classList);
   } else {
     boton['volver paso'].classList.add('oculto');
   }
@@ -177,12 +187,16 @@ function alternarFormulario(e){
   if(e.target == boton['formulario registro']){
     formulario['formulario registro'].classList.remove('oculto');
     formulario['formulario inicio'].classList.add('oculto');
-    boton['formulario registro'].classList.add('active')
-    boton['formulario inicio'].classList.remove('active')
+    boton['formulario registro'].classList.add('active');
+    boton['formulario inicio'].classList.remove('active');
+    formularioActual = formulario['formulario registro'];
   } else {
     formulario['formulario registro'].classList.add('oculto');
     formulario['formulario inicio'].classList.remove('oculto');
-    boton['formulario inicio'].classList.add('active')
-    boton['formulario registro'].classList.remove('active')
+    boton['formulario inicio'].classList.add('active');
+    boton['formulario registro'].classList.remove('active');
+    formularioActual = formulario['formulario inicio'];
   }
+  obtenerPasos();
+  obtenerInputs(1);
 }
