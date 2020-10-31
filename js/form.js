@@ -1,8 +1,19 @@
+/*
+  Descripción de las variables:
+  - formulario: guarda los formularios disponibles en la página. Se guardan de forma automática usando el atributo data-nombre-formulario = nombre.
+  - boton: guarda todos los botones de los formularios. Se guardan de forma manual. Se puede automatizar usando data-componente-formulario = boton (a posterior).
+  - pasosFormulario: es un array de tres posiciones, la primera es el paso inicial, la segunda el paso actual y la tercera el total de pasos. Si el total de pasos es cero, significa que el formulario es de un solo paso.
+  - clave: es un array que guarda la referencia de los campos de claves. Está puesto de forma manual pero se puede automatizar usando data-componente-formulario = clave (a posterior).
+  - formularioActual: se guarda la referencia del formulario que está viendo el usuario en un momento dado.
+  -
+
+*/
 let formulario = {}, boton = {}, pasosFormulario = [1, 1], clave = [], formularioActual;
 
 iniciarAplicacion();
 
 function iniciarAplicacion(){
+  /* Limpia el formulario y obtiene los inputs del paso actual (por defecto el primero) */
   obtenerControles();
   agregarListeners();
   obtenerPasos();
@@ -11,14 +22,17 @@ function iniciarAplicacion(){
 }
 
 function obtenerControles(){
-  formulario['formulario registro'] = document.getElementById('formulario-registro');
-  formulario['formulario inicio'] = document.getElementById('formulario-inicio');
-  formularioActual = formulario['formulario registro'];
+  /* Se obtienen los controles de forma manual (se puede mejorar y automatizar con data-componente-formulario) */
+
+  for(form of document.querySelectorAll('[data-nombre-formulario]')){
+    formulario['formulario ' + form.dataset.nombreFormulario] = form;
+  }
+  formularioActual = formulario[Object.keys(formulario)[0]];
   boton['siguiente paso'] = document.getElementById('siguiente-paso');
   boton['volver paso'] = document.getElementById('volver-paso');
   boton['formulario registro'] = document.getElementById('boton-formulario-registro');
   boton['formulario inicio'] = document.getElementById('boton-formulario-inicio');
-  boton['enviar formulario'] = document.querySelectorAll('button[type=submit]');
+  boton['enviar formulario'] = document.querySelector('button[type=submit]');
   clave.push(document.getElementById('clave-registro'));
   clave.push(document.getElementById('clave-registro-repetir'));
 }
@@ -28,9 +42,11 @@ function agregarListeners(){
   boton['volver paso'].addEventListener('click', navegarFormulario);
   boton['formulario registro'].addEventListener('click', alternarFormulario);
   boton['formulario inicio'].addEventListener('click', alternarFormulario);
-  for(btn of boton['enviar formulario']){
+
+  for(let boton of document.querySelectorAll('button[type=submit]')){
     boton.addEventListener('click', enviarFormulario);
   }
+
 }
 function reiniciarFormulario(e){
   e.preventDefault();
@@ -40,17 +56,15 @@ function reiniciarFormulario(e){
 }
 function enviarFormulario(e){
   e.preventDefault();
-  if(pasosFormulario[2]){
-    //Si el formulario tiene un solo paso, pasosFormulario[2] es cero.
-    if(!inputsValidos(obtenerInputs())){
+  if(!pasosFormulario[2]){
+    if(!inputsValidos(obtenerInputs(0))){
       return false;
     }
-  } else {
-    for(let i = pasosFormulario[0]; i<= pasosFormulario[2]; i++){
-      if(!inputsValidos(obtenerInputs(i))){
-        navegarFormulario(null, i);
-        return false;
-      }
+  }
+  for(let i = pasosFormulario[0]; i<= pasosFormulario[2]; i++){
+    if(!inputsValidos(obtenerInputs(i))){
+      navegarFormulario(null, i);
+      return false;
     }
   }
   document.forms[0].submit();
@@ -73,7 +87,9 @@ function inputsValidos(inputs = obtenerInputs(pasosFormulario[1])){
         let regExp = /[0-9]+/gi;
         if(regExp.test(input.value)) continue;
       }
-      if(input.type == 'checkbox' && input.checked) continue;
+      if(input.type == 'checkbox') {
+        if(input.checked || !('required' in input.attributes)) continue;
+      }
     }
     if(input.localName == 'select' && input.selectedIndex > 0) continue;
     withError.push(input);
@@ -129,10 +145,11 @@ function obtenerPasos(){
   pasosFormulario[2] = formularioActual.querySelectorAll('[data-paso]').length;
 }
 
-function obtenerInputs(paso = null){
+function obtenerInputs(paso){
   let inputs = formularioActual.querySelectorAll(`.form-group[data-paso="${paso}"] input, .form-group[data-paso="${paso}"] select`);
+
   if(!inputs.length){
-    inputs = formularioActual.querySelectorAll('.form-group input, .form-group select');
+    inputs = formularioActual.querySelectorAll(`.form-group input, .form-group select`);
   }
   for (input of inputs){
     if(input.type != "checkbox" && input.type != "select"){
@@ -190,12 +207,15 @@ function alternarFormulario(e){
     boton['formulario registro'].classList.add('active');
     boton['formulario inicio'].classList.remove('active');
     formularioActual = formulario['formulario registro'];
+    boton['enviar formulario'] = document.querySelector('button[type=submit]:not(.oculto)');
   } else {
     formulario['formulario registro'].classList.add('oculto');
     formulario['formulario inicio'].classList.remove('oculto');
     boton['formulario inicio'].classList.add('active');
     boton['formulario registro'].classList.remove('active');
     formularioActual = formulario['formulario inicio'];
+    boton['enviar formulario'] = document.querySelector('button[type=submit]:not(.oculto)');
+    boton['enviar formulario'].addEventListener('click', enviarFormulario);
   }
   obtenerPasos();
   obtenerInputs(1);
