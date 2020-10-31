@@ -27,27 +27,31 @@ function obtenerControles(){
   for(form of document.querySelectorAll('[data-nombre-formulario]')){
     formulario['formulario ' + form.dataset.nombreFormulario] = form;
   }
+  for(btn of document.querySelectorAll('[data-nombre-boton]')){
+    boton[btn.dataset.nombreBoton] = btn;
+  }
   formularioActual = formulario[Object.keys(formulario)[0]];
-  boton['siguiente paso'] = document.getElementById('siguiente-paso');
-  boton['volver paso'] = document.getElementById('volver-paso');
-  boton['formulario registro'] = document.getElementById('boton-formulario-registro');
-  boton['formulario inicio'] = document.getElementById('boton-formulario-inicio');
-  boton['enviar formulario'] = document.querySelector('button[type=submit]');
   clave.push(document.getElementById('clave-registro'));
   clave.push(document.getElementById('clave-registro-repetir'));
 }
 
 function agregarListeners(){
-  boton['siguiente paso'].addEventListener('click', navegarFormulario);
-  boton['volver paso'].addEventListener('click', navegarFormulario);
-  boton['formulario registro'].addEventListener('click', alternarFormulario);
-  boton['formulario inicio'].addEventListener('click', alternarFormulario);
-
-  for(let boton of document.querySelectorAll('button[type=submit]')){
-    boton.addEventListener('click', enviarFormulario);
+  for(btn in boton){
+    if(btn.includes('paso')){
+      boton[btn].addEventListener('click', navegarFormulario);
+      continue;
+    }
+    if(btn.includes('formulario')){
+      if(btn.includes('enviar')){
+        boton[btn].addEventListener('click', enviarFormulario);
+      } else {
+        boton[btn].addEventListener('click', alternarFormulario);
+      }
+      continue;
+    }
   }
-
 }
+
 function reiniciarFormulario(e){
   e.preventDefault();
   reiniciarLabels();
@@ -189,6 +193,11 @@ function alternarInputs(anterior, actual){
   }
 }
 
+/*
+  Si la función es disparada por un evento (esto quiere decir, que se preseionó o bien el botón de siguiente o bien el de volver), esta tendrá que validar los inputs y luego avanzar o retroceder.
+
+  Si la función es disparada porque el programa necesita que se vuelva a un paso a verificar datos, entonces el evento será nulo y el paso será pasado por parametro.
+*/
 function navegarFormulario(e, paso = null){
   if(paso){
     alternarInputs(pasosFormulario[1], paso);
