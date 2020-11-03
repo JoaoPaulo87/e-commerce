@@ -1,0 +1,7 @@
+body{
+  --color-contraste: rgb(33, 33, 33);
+  --color-contraste-light: rgb(100, 100, 100);
+  --color-base: rgb(255, 255, 255);
+  --color-base-light: rgb(200, 200, 200);
+  --color-enfasis: rgb(255, 234, 0);
+}

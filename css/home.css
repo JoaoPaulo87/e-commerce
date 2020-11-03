@@ -25,7 +25,7 @@ body{
 .row.p-4.p-md-5.text-white.align-items-center{
     height: 40em;
     width: 100%;
-    background-image: url(imagenes-ecommerce/img/fondo_catalogo_invertido.jpg);
+    background-image: url(../imagenes-ecommerce/img/fondo_catalogo_invertido.jpg);
     background-repeat: no-repeat;
     background-size:100%;
     opacity: 0.9;
@@ -52,4 +52,11 @@ body{
 .rounded-circle img{
     width: 100%;
     height: auto;
+}
+
+.container{
+    padding-right: 0%;
+    margin-right: 0%; 
+    padding-left: 0%; 
+    margin-left: 0%;
 }

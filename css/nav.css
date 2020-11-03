@@ -1,0 +1,37 @@
+.navbar{
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--color-base);
+}
+.navbar .navbar-toggler{
+  color: inherit;
+}
+
+.navbar-brand{
+  margin: 0.75em 0;
+}
+.navbar-brand img{
+  width: 7em;
+}
+#carrito{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin-right: 2%;
+  padding: 0.5em;
+  color: var(--color-base);
+}
+#carrito button:hover{
+  color: var(--color-base-light);
+}
+#carrito button{
+  display: flex;
+  flex-flow: row nowrap;
+  color: inherit;
+}
+#carrito p{
+  display: inline-block;
+  margin: 0;
+  margin-top: 0.1em;
+  margin-left: 0.5em;
+}

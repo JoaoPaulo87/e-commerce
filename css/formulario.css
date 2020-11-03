@@ -1,0 +1,75 @@
+.form{
+  background-color: var(--color-base);
+  box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.1);
+  border-radius: var(--radio-bordes);
+  color: var(--color-contraste);
+  background-color: var(--color-base);
+  width: max-content;
+  overflow: hidden;
+}
+.form__controles{
+  padding: 1em 2em;
+}
+.form .navbar{
+  padding: 0;
+}
+.form .nav{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+.form .nav li{
+  flex-grow: 1;
+}
+.form label{
+  position: relative;
+  top: 2.4em;
+  left: 0.8em;
+  color: var(--color-contraste);
+  transition: top 0.3s, left 0.3s, color 0.3s;
+}
+.form textarea{
+  display: block;
+}
+.form label.en-foco{
+  position: relative;
+  top: 0.6em;
+  left: 0;
+  color: inherit;
+}
+.form .form-check{
+  margin-top: 1em;
+}
+.form .form-check label{
+  position: static;
+  color: inherit;
+}
+.form #boton-formulario-registro, .form #boton-formulario-inicio{
+  border-radius: 0;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.form .btn.active{
+  font-size: 1.2em;
+}
+.form .btn:not(.active){
+  font-size: 0.9em;
+}
+.formulario__mensaje{
+  position: fixed;
+  opacity: 1;
+  right: 0;
+  border-radius: var(--radio-bordes);
+  font-weight: bold;
+  padding: 0.75em;
+  margin: 0 0.5em 0.5em 0;
+  border-width: 0.15em;
+  border-style: solid;
+  cursor: pointer;
+}
+.formulario__mensaje.mensaje-error{
+  color: rgba(255, 0, 0, 1);
+  background-color: rgba(255, 150, 150, 1);
+  border-color: rgba(255, 0, 0, 1);
+}

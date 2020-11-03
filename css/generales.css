@@ -1,0 +1,26 @@
+:root{
+  font-size: calc(0.8rem + 0.4vmax);
+}
+body{
+  background-color: var(--color-base);
+  --radio-bordes:0.5em;
+}
+main{
+  margin-bottom: 1em;
+}
+button > *{
+  font-size: 1em;
+}
+.oculto{
+  display: none;
+}
+.nav-link{
+  color: var(--color-base);
+  padding: 0.5em 2em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-link:hover{
+  color: var(--color-enfasis);
+  border: none;
+}
