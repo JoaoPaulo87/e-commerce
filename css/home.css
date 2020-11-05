@@ -23,7 +23,7 @@ body{
 }
 
 .row.p-4.p-md-5.text-white.align-items-center{
-    height: 40em;
+    height: 37em;
     width: 100%;
     background-image: url(../imagenes-ecommerce/img/fondo_catalogo_invertido.jpg);
     background-repeat: no-repeat;
@@ -54,9 +54,3 @@ body{
     height: auto;
 }
 
-.container{
-    padding-right: 0%;
-    margin-right: 0%; 
-    padding-left: 0%; 
-    margin-left: 0%;
-}
