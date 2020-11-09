@@ -1,0 +1,101 @@
+/* estilos Producto */
+
+.mediosPago{
+    max-width: 40px;
+}
+.listPagos{
+    margin-left: -35px ;
+
+}
+
+/* Pagina producto  */
+
+.breadcrumb {
+    background-color:transparent ; 
+    border-radius: none;
+    font-size: 15px; 
+  }
+  
+  .breadcrumb-item+.breadcrumb-item::before {
+    padding-right: 5px;
+    color: #212529; 
+  }
+  /* carousel */
+.carousel-inner img{
+    max-width: 100%;
+    max-height: 500px;
+}
+.img_product{
+    width: 100%;
+}
+#carouselControls .carousel-indicators {
+    position: static;
+    margin-top: 10px;
+    
+}
+#carouselControls .carousel-indicators>li{
+    width: 100%;
+}
+#carouselControls .carousel-indicators li img {
+    display: block;
+    opacity: 0.5;
+}
+#carouselControls .carousel-indicators li.active img{
+    opacity: 1;
+}
+#carouselControls .carousel-indicators li:hover img{
+    opacity: 0.75;
+}
+.imgThumnail{
+    max-width: 60%;
+    
+}
+
+
+.content{
+    margin-left: 80px;
+}
+.descripcion{
+    margin-top: 50px;
+}
+.text-description{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2.25;
+}
+/* MultiSlider */
+
+#multi-item-example .carousel-indicators>li{
+    display: none;
+}
+
+
+.carousel-multi-item{
+    max-width: 100%;
+    max-height: 300px ;
+}
+.controls-aside a{
+    color: #212529;
+    margin: -120px;
+}
+.controls-aside a:active, .controls-aside a:hover, .controls-aside a:visited, .controls-aside a:focus{
+    color: #212529;
+}
+
+
+
+@media screen and (max-width: 991px) {
+.content{
+    margin-left: 10px;
+
+ }
+ 
+ .controls-aside a{
+    color: #212529;
+    margin: 0px;
+}
+#carouselControls .carousel-indicators>li{
+    display: none;
+}
+  
+}

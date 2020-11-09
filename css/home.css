@@ -26,9 +26,12 @@ body{
     height: 37em;
     width: 100%;
     background-image: url(../imagenes-ecommerce/img/fondo_catalogo_invertido.jpg);
-    background-repeat: no-repeat;
-    background-size:100%;
+    /* background-size:100%; */
     opacity: 0.9;
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .row.pt-3{
@@ -54,3 +57,14 @@ body{
     height: auto;
 }
 
+.row.featurette{
+    text-align: center; 
+    color:aliceblue; 
+    box-shadow: 6px 8px 10px 8px rgba(0, 0, 0, 0.3); 
+    background-image: url("../imagenes-ecommerce/img/fondo_catalogo.jpg");
+    opacity: 0.9;
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
