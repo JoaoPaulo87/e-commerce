@@ -68,3 +68,8 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.container-footer{
+    margin: 0em;
+    padding: 2em;
+}
